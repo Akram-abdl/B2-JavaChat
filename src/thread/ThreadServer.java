@@ -20,11 +20,14 @@ public class ThreadServer implements Runnable{
             // Mécanisme de lecture ET d'écriture
             PrintWriter sock_out = new PrintWriter(m_s.getOutputStream(), true);
             BufferedReader sock_in = new BufferedReader(new InputStreamReader(m_s.getInputStream()));
+            sock_out.println("Tu es co");
             while (true) {
                 // demande <- réception de la demande du client
                 String demande = sock_in.readLine();
+                System.out.println("demande");
 
                 if (demande.equals("bye")) {
+                    sock_out.println("byebye");
                     break;
                 }
             }

@@ -16,7 +16,7 @@ public class Server {
                 System.out.println("Attente d'une connexion");
 
                 Socket s = ss.accept();
-                new Thread(new ThreadServer(s));
+                new Thread(new ThreadServer(s)).start();
             }
 
         } catch (Exception exc) {
