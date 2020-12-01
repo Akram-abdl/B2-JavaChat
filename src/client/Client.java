@@ -19,21 +19,35 @@ public class Client {
             PrintWriter sock_out = new PrintWriter(s.getOutputStream(), true);
             Scanner clav_in = new Scanner(System.in);
 
-            // get "Tu es co"
+            // get "Pseudo : "
             String message = sock_in.readLine();
             System.out.println(message);
 
-            // get "Pseudo : "
+            String demande = clav_in.next();
+            sock_out.println(demande);
+
+            // get hey
+            message = sock_in.readLine();
+            System.out.println(message);
+
+            // get help
             message = sock_in.readLine();
             System.out.println(message);
 
             while (true){
-                String demande = clav_in.next();
+                demande = clav_in.next();
                 sock_out.println(demande);
                 String reponse = sock_in.readLine();
                 System.out.println(reponse);
 
                 if (reponse.equals("byebye")) break;
+                else if (reponse.equals("Avec qui ?"))
+                {
+                    demande = clav_in.next();
+                    sock_out.println(demande);
+                    reponse = sock_in.readLine();
+                    System.out.println(reponse);
+                }
 
             }
 

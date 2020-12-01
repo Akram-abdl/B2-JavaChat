@@ -25,21 +25,29 @@ public class ThreadServer implements Runnable{
             // Mécanisme de lecture ET d'écriture
             PrintWriter sock_out = new PrintWriter(m_s.getOutputStream(), true);
             BufferedReader sock_in = new BufferedReader(new InputStreamReader(m_s.getInputStream()));
-            sock_out.println("Tu es co");
             sock_out.println("Pseudo : ");
             m_name = sock_in.readLine();
             m_parent.addUser(m_name);
             sock_out.println(String.format("Hey %s !", m_name));
 
+            // Envoie de l'aide au client
+            String aide = "Commandes possibles : [connexion, bye]";
+            sock_out.println(aide);
 
             while (true) {
                 // demande <- réception de la demande du client
                 String demande = sock_in.readLine();
-                System.out.println("demande");
 
                 if (demande.equals("bye")) {
                     sock_out.println("byebye");
                     break;
+                } else if (demande.equals("connexion"))
+                {
+                    sock_out.println("Avec qui ?");
+                    demande = sock_in.readLine();
+                    sock_out.println("Let's go !");
+                } else {
+                    sock_out.println("Commande incorrecte");
                 }
             }
             // Fermeture de la co
