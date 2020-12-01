@@ -18,7 +18,13 @@ public class Client {
             BufferedReader sock_in = new BufferedReader(new InputStreamReader(s.getInputStream()));
             PrintWriter sock_out = new PrintWriter(s.getOutputStream(), true);
             Scanner clav_in = new Scanner(System.in);
+
+            // get "Tu es co"
             String message = sock_in.readLine();
+            System.out.println(message);
+
+            // get "Pseudo : "
+            message = sock_in.readLine();
             System.out.println(message);
 
             while (true){
