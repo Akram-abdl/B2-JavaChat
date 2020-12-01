@@ -44,8 +44,8 @@ public class ThreadServer implements Runnable{
                 } else if (demande.equals("connexion"))
                 {
                     sock_out.println("Avec qui ?");
-                    demande = sock_in.readLine();
-                    sock_out.println("Let's go !");
+                    //demande = sock_in.readLine();
+                    //sock_out.println("Let's go !");
                 } else {
                     sock_out.println("Commande incorrecte");
                 }

@@ -1,5 +1,8 @@
 package client;
 
+import thread.ThreadReadMessage;
+import thread.ThreadSendMesssage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,28 +21,13 @@ public class Client {
             BufferedReader sock_in = new BufferedReader(new InputStreamReader(s.getInputStream()));
             PrintWriter sock_out = new PrintWriter(s.getOutputStream(), true);
             Scanner clav_in = new Scanner(System.in);
+            Thread read = new Thread(new ThreadReadMessage(sock_in));
+            Thread send = new Thread(new ThreadSendMesssage(clav_in, sock_out));
 
-            // get "Pseudo : "
-            String message = sock_in.readLine();
-            System.out.println(message);
+            read.start();
+            send.start();
 
-            String demande = clav_in.next();
-            sock_out.println(demande);
-
-            // get hey
-            message = sock_in.readLine();
-            System.out.println(message);
-
-            // get help
-            message = sock_in.readLine();
-            System.out.println(message);
-
-            while (true){
-                demande = clav_in.next();
-                sock_out.println(demande);
-                String reponse = sock_in.readLine();
-                System.out.println(reponse);
-
+           /* while (true){
                 if (reponse.equals("byebye")) break;
                 else if (reponse.equals("Avec qui ?"))
                 {
@@ -49,7 +37,7 @@ public class Client {
                     System.out.println(reponse);
                 }
 
-            }
+            }*/
 
         } catch(Exception exc) {
             System.err.println(exc.getMessage());
