@@ -27,6 +27,8 @@ public class Client {
                 String reponse = sock_in.readLine();
                 System.out.println(reponse);
 
+                if (reponse.equals("byebye")) break;
+
             }
 
         } catch(Exception exc) {
