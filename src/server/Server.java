@@ -2,7 +2,6 @@ package server;
 
 import thread.ThreadServer;
 
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -23,6 +22,10 @@ public class Server {
         } catch (Exception exc) {
             System.err.println(exc.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        new Server();
     }
 
 }
