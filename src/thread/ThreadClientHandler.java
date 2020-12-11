@@ -17,12 +17,12 @@ public class ThreadClientHandler implements Runnable{
     private Boolean isLogged;
 
     public ThreadClientHandler(Socket s, String name, Server parent) throws IOException {
-        this.m_s = s;
-        this.m_name = name;
-        this.m_parent = parent;
-        this.m_sockIn = new BufferedReader(new InputStreamReader(s.getInputStream()));;
-        this.m_sockOut = new PrintWriter(s.getOutputStream(), true);;
-        this.isLogged=true;
+        m_s = s;
+        m_name = name;
+        m_parent = parent;
+        m_sockIn = new BufferedReader(new InputStreamReader(s.getInputStream()));;
+        m_sockOut = new PrintWriter(s.getOutputStream(), true);;
+        isLogged=true;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ThreadClientHandler implements Runnable{
 
                 System.out.println(msg);
                 if (msg.equals("bye")) {
-                    this.isLogged = false;
-                    this.m_s.close();
+                    isLogged = false;
+                    m_s.close();
                     break;
                 }
                 for (ThreadClientHandler client : m_parent.getClients())
